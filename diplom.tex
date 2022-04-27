@@ -6,89 +6,408 @@ subf, % подключить и настроить пакет subfig для вл
 times % шрифт Times как основной
 %,fixint=false % отключить прямые знаки интегралов
 ]{disser}
+\setlength{\parindent}{1.25cm}
+\usepackage[a4paper,14pt,left=3cm, right=1cm, top=2cm, bottom=2cm, headsep=0.7cm, footskip=1cm]{geometry}
 
-\renewcommand{\rmdefault}{ftm}
-%\usepackage{tempora}
 \usepackage[T2A]{fontenc}
-
-\usepackage[
-a4paper, mag=1000,
-left=3cm, right=1cm, top=2cm, bottom=2cm, headsep=0.7cm, footskip=1cm
-]{geometry}
-
-\usepackage{graphicx}% Include figure files66
-
+\usepackage{indentfirst}
 \usepackage[utf8]{inputenc}
 \usepackage[english,russian]{babel}
-
-%\usepackage{paratype}
-%\defaultfontfeatures{Ligatures={TeX},Renderer=Basic} 
-%\setmainfont[Ligatures={TeX,Historic}]{Times New Roman}
+\renewcommand{\rmdefault}{ftm}
 \usepackage{pdfpages}
 \ifpdf\usepackage{epstopdf}\fi
-\usepackage{array}
-\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
-\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
-\usepackage{tabularx}
-%\usepackage{caption}
-
+\renewcommand{\thesectionfont}{\normalsize}
+\renewcommand{\sectionfont}{\normalsize}
+%\usepackage{caption} % подписи к рисункам в русской типографской традиции
 \usepackage{dcolumn}
+\linespread{1.6}
+%\usepackage{floatrow}
 \usepackage{bm}
-\usepackage{hyperref}
+%\floatsetup[table]{capposition=top}
+\usepackage{cmap}
+%\usepackage{hyperref}
 \usepackage{color}
 \usepackage{epstopdf}
+\usepackage{floatrow}
 \usepackage{amsmath}
+\usepackage{lipsum}
 \usepackage{amssymb}
+\newlength\mysep
+\setlength\mysep{0em}% default equivalent to capbesidesep=none
+\DeclareFloatSeparators{mysep}%
+{\hskip\mysep}
 \usepackage{cite}
+\usepackage[margin=10pt,font=small,labelsep=endash, figurename= {Рисунок}]{caption}
 \usepackage{multirow}
-\usepackage{afterpage}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth} \bfseries\MakeUppercase}
+\renewcommand{\cftbeforetoctitleskip}{-1em}
+\renewcommand{\cftaftertoctitleskip}{25mm}
+\renewcommand{\cftaftertoctitle}{\mbox{}\hfill \\ \mbox{}\hfill{\normalsize с.}\vspace{-4em}}
+\cftsetpnumwidth{5mm}
+\renewcommand{\cftchappagefont}{\normalfont}
+\renewcommand{\cftchapfont}{\normalsize \MakeUppercase{\chaptername} }
+\renewcommand\cftchapdotsep{\cftdot} %добавляет отточия после \chapter{title}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}} %делает отточия после \chapter{title} тонкими, (по умолчанию жирные).
+\setlength{\cftchapindent}{1mm} %отступ между левым полем и \chapter{}
+\setlength{\cftsecindent}{1.25cm} %отступ между левым полем и \section{title}
+\setlength{\cftsubsecindent}{2.5cm}
+%\renewcommand{\cftsecfont}{\hspace{0pt}}
+%\renewcommand{\cftsubsecfont}{\hspace{0pt}}
+%\renewcommand{\cftbeforechapskip}{2pt}
+%\renewcommand{\cftparskip}{-1mm}
+\setlength{\cftbeforechapskip}{1.5pt} %отступ между главами
+\setlength{\cftbeforesecskip}{1.5pt} %отступ между секциями \section{title}
+\renewcommand{\cftdotsep}{0.5}
+\addto\captionsrussian{\renewcommand{\chaptername}{}}
+\usepackage{lscape}
 \usepackage[font={normal}]{caption}
-%\usepackage{setspace}
-\usepackage{amsmath} % align
-\usepackage[onehalfspacing]{setspace}% 1,5 интервал
-%\usepackage{biblatex}
-\usepackage{fancyhdr} % пакет для установки колонтитулов
-\pagestyle{fancy} % смена стиля оформления страниц
-\fancyhf{} % очистка текущих значений
-\fancyfoot[C]{\thepage} % установка верхнего колонтитула
-\renewcommand{\headrulewidth}{0pt} % убрать разделительную линию
-
-\captionsetup{format=hang,labelsep=period}
-
+\renewcommand{\baselinestretch}{1.7}
+\usepackage{setspace}
+%\onehalfspacing
+\usepackage{fancyhdr}
+%\usepackage{tempora}
+\usepackage[square,numbers,sort&compress]{natbib}
+%\usepackage{pscyr}
+\usepackage{enumitem}
+\setlist{nolistsep, itemsep=0.3cm,parsep=0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\fancypagestyle{plain}{
+	\fancyhf{}
+	\cfoot{\thepage}
+	\renewcommand{\headrulewidth}{0pt}}
+\setcounter{page}{5} % начать нумерацию страниц с №2
+\usepackage[onehalfspacing]{setspace}
+%\captionsetup{format=hang,labelsep=period}
 % Использовать полужирное начертание для векторов
-\let\vec=\mathbf
-
 % Включать подсекции в оглавление
-\setcounter{tocdepth}{2}
-
-\graphicspath{{images/}}
-
-
-\pagestyle{footcenter}
-\chapterpagestyle{footcenter}
-
-
+\setcounter{tocdepth}{3}
+%\setcounter{secnumdepth}{2}
+\graphicspath{{fig/}}
+\titleformat{\section}[block]{\bfseries\normalsize}{\hspace{1.25cm}\thesection}{1ex}{}
+\titlespacing{\section}{0mm}{8.466mm}{12.7mm}
+\titleformat{\subsection}{\normalfont\fontsize{15}{14}}{\thesubsection}{1ex}{}
+\titlespacing{\subsection}{1.25cm}{8.466mm}{12.7mm}
+\titleformat{\subsubsection}{\normalfont\fontsize{15}{14}}{\thesubsubsection}{1ex}{}
+\titlespacing{\subsubsection}{\parindent}{8.466mm}{8.466mm}
+%\floatsetup[table]{capposition=beside,capbesideposition={left}}
+\makeatletter
+\renewenvironment{thebibliography}[1]
+{\centering {СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
+	\@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
+	\list{\@biblabel{\@arabic\c@enumiv}}%
+	{\settowidth\labelwidth{\@biblabel{#1}}%
+		\setlength{\itemindent}{\dimexpr\labelwidth+\labelsep+1.25cm}
+		\leftmargin\z@
+		\@openbib@code
+		\usecounter{enumiv}%
+		\let\p@enumiv\@empty
+		\renewcommand\theenumiv{\@arabic\c@enumiv}}%
+	\sloppy
+	\clubpenalty4000
+	\@clubpenalty \clubpenalty
+	\widowpenalty4000%
+	\sfcode`\.\@m}
+{\def\@noitemerr
+	{\@latex@warning{Empty `thebibliography' environment}}%
+	\endlist}
+\makeatother
+\captionsetup[table]{singlelinecheck=false,justification=raggedright}
+\floatsetup[table]{capposition=top}
+\linespread{1.4}
 \begin{document}
-\includepdf[pages={1-1}]{chapters/Titul_vkr.pdf}
-
-\input{chapters/introduction.tex}
-\newpage
-%\input{chapters/chapter_1.tex}
-%\newpage
-\input{chapters/chapter_2.tex}
-\newpage
-\input{chapters/chapter_3.tex}
-\newpage
-\input{chapters/chapter_4.tex}
-\newpage
-%\input{chapters/conclusion.tex}
-%\newpage
-
-%\bibliographystyle{unsrt}
-\bibliographystyle{biblio/gost2008n}
-\renewcommand\bibname{\normalsize СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
-\let\BibEmph=\emph
-%\bibliographystyle{ugost2008}  %% стилевой файл для оформления по ГОСТу
-\bibliography{biblio/biblio}
-
-\end{document}
+	%\input{Abstract.tex}
+	\addtocontents{toc}{\protect\thispagestyle{fancy}}
+	\renewcommand{\contentsname}{\normalsize \normalfont СОДЕРЖАНИЕ}
+	%{\renewcommand{\baselinestretch}{1.0}
+		\newpage
+		\tableofcontents
+		%\input{Список терминов}
+		\input{Introduction_asp.tex}
+		\input{Chapter_0.tex}
+		\input{Chapter_1.tex}
+		\input{Chapter_2.tex}
+		\input{zakluchenie.tex}
+		\setcounter{chapter}{0}
+		\newpage
+		\renewcommand{\bibnumfmt}[1]{#1 \hfill} % нумерация источников в самом списке — через точку
+		\renewcommand{\bibsection}{\likechapter \centering{CПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}} 
+		\setlength{\bibsep}{0pt}
+		
+		\addcontentsline{toc}{chapter}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
+		\begin{thebibliography}{99}{\protect\thispagestyle{fancy}}
+			\vspace{6mm}
+			\bibitem{litlink1} 
+			The Robot Report: [электронный ресурс]. — URL: http://www.therobotreport.com.
+			\vspace{-3mm}
+			\bibitem{litlink2} 
+			Национальная Ассоциация участников рынка робототехники: [электронный ресурс]. — URL: https://robotunion.ru/services/documents.
+			\vspace{-3mm}
+			\bibitem{litlink3}
+			Потенциал российских инноваций на рынке систем автоматизации и робототехники: [электронный ресурс]. — URL: https://media.rbcdn.ru/media/reports.
+			\vspace{-3mm}
+			\bibitem{litlink4}
+			Abi Research: [электронный ресурс]. — URL: https://www.abiresearch.com.
+			\vspace{-3mm}
+			\bibitem{litlink5}
+			Langsch F, Virga S, Esteban J, Göbl R, Navab N. Robotic ultrasound for catheter navigation in endovascular procedures. RSJ International Conference on Intelligent Robots and
+			Systems (IROS). 2019. p. 5404–5410.
+			\vspace{-3mm}
+			\bibitem{litlink6}
+			Pîslă D, Gherman B, Gîrbacia F, Vaida C, Butnariu S, Gîrbacia T, et al. Optimal planning of needle insertion for robotic-assisted prostate biopsy. In: Borangiu T, editor. Advances in robot design and intelligent control. Cham: Springer International Publishing; 2016.
+			\vspace{-3mm}
+			\bibitem{litlink7}
+			Seo, Joonho; Koizumi, Norihiro; Mitsuishi, Mamoru; Sugita, Naohiko. Ultrasound image based visual servoing for moving target ablation by high intensity focused ultrasound, 2016.
+			\vspace{-3mm}
+			\bibitem{litlink8}
+			Sen, Hasan; Lediju Bell, Muyinatu; Zhang, Yin; Ding, Kai; Boctor, Emad; Wong, John; Iordachita, Iulian; Kazanzides. System Integration and In-Vivo Testing of a Robot for Ultrasound Guidance and Monitoring during Radiotherapy, 2016.
+			\vspace{-3mm}
+			\bibitem{litlink9}
+			Mackman N. Triggers, targets and treatments for thrombosis. Nature, 2008.
+			\vspace{-3mm}
+			\bibitem{litlink10}
+			Минченя В.Т., Степаненко Д.А. Перспективы использования гибких ультразвуковых волноводных систем в медицине и технике. Приборы и методы измерений, 2010.
+			\vspace{-3mm}
+			\bibitem{litlink11}
+			Gupta, R., Walsh, C., Wang, I. S., Kachelrieß, M., Kuntz, J., Bartling,
+			S. CT-Guided Interventions: Current Practice and Future Directions.
+			Intraoperative Imaging and Image-Guided Therapy, 173–191. 2013.
+			\vspace{-3mm}
+			\bibitem{litlink12}
+			Kliewer, M. A., Sheafor, D. H., Paulson, E. K., Helsper, R. S., Hertzberg,
+			B. S., Nelson, R. C. Percutaneous liver biopsy: a cost-benefit analysis
+			comparing sonographic and CT guidance. AJR. American journal of roentgenology,
+			173(5), 1199-1202. 2019.
+			\vspace{-3mm}
+			\bibitem{litlink13}
+			Condino, S., Ferrari, V., Freschi, C., Alberti, A., Berchiolli, R., Mosca, F.,
+			Ferrari, M. Electromagnetic navigation platform for endovascular surgery:
+			how to develop sensorized catheters and guidewires. The International Journal of
+			Medical Robotics and Computer Assisted Surgery, 2012.
+			\vspace{-3mm}
+			\bibitem{litlink14}
+			Durand P, Moreau-Gaudry A, Silvent A-S,Frandon J, Chipon E, Medici M, et al. Computer assisted electromagnetic navigation improves accuracy in computed tomography guided interventions: A prospective randomized clinical trial. 2017.
+			\vspace{-3mm}
+			\bibitem{litlink15}
+			Arnolli MM, Hanumara NC, Franken M, Broeders IAMJ. An overview of systems for CT- and MRI guided percutaneous needle placement in the thorax and abdomen. Int J Med Robotics Comput Assist Surg. 2015 Dec; 11(4): 458–75.
+			\vspace{-3mm}
+			\bibitem{litlink16}
+			Grasso R, Faiella E, Luppi G, Schena E, Giurazza F, Del Vescovo R,
+			et al.Percutaneous lung biopsy: comparaison between an augmented reality CT
+			navigation system and standard Ct-guided technique. Int. J. Comput. Assist. Radiol.
+			Surg. 2013 Sept 5; 8:837–848.
+			\vspace{-3mm}
+			\bibitem{litlink17}
+			Schubert T, Jacob A, Pansini M, Liu D, Gutzeit A, Kos S. CT-guided
+			interventions using a free hand, optical tracking system: initial clinical experience.
+			Cardiovascular and interventional radiology. 2013 Aug 4; 36:1055–1062.
+			\vspace{-3mm}
+			\bibitem{litlink18}
+			Grand D, Atalay M, Cronan J, Mayo-Smith W, Dupuy D. CT-guided percuntaneous lung biopsy: comparison of conventional CT fluoroscopy to CT fluoroscopy with electromagnetic navigation system in 60 consecutive patients. European journal of radiology. 2011 Aug 2; 79:133–136.
+			\vspace{-3mm}
+			\bibitem{litlink19}
+			Dijkstra, M., Eagleton, M., Greenberg, R., Mastracci, T., Hernandez,
+			A. (2011). Intraoperative C-arm cone-beam computed tomography in
+			fenestrated/branched aortic endografting. Journal of vascular surgery, 53,
+			583-90.
+			\vspace{-3mm}
+			\bibitem{litlink20}
+			Медицинские системы и технологии [Электронный ресурс]. – Режим доступа: https://medsyst.ru/catalog/rentgen-apparat/ge/oec-fluorostar/. 
+			\vspace{-3mm}
+			\bibitem{litlink21}
+			Ozturk, C., Guttman, M., McVeigh, E. R., Lederman, R. J. Magnetic Resonance Imaging-guided Vascular Interventions. Topics in Magnetic Resonance Imaging, 16(5), 369–381.2005.
+			\vspace{-3mm}
+			\bibitem{litlink22}
+			Saeed, M., Hetts, S. W., English, J., Wilson, M. MR fluoroscopy
+			in vascular and cardiac interventions (review). The International Journal of
+			Cardiovascular Imaging, 28(1), 117–137. 2011.
+			\vspace{-3mm}
+			\bibitem{litlink23}
+			Bartels, L. W., Bakker, C. J. G. Endovascular interventional
+			magnetic resonance imaging. Physics in Medicine and Biology, 2003.
+			\vspace{-3mm}
+			\bibitem{litlink24}
+			Wacker, F. K., Hillenbrand, C. M., Duerk, J. L., Lewin, J. S. (2005). MR-
+			Guided Endovascular Interventions: Device Visualization, Tracking, Navigation,
+			Clinical Applications, and Safety Aspects. Magnetic Resonance Imaging Clinics of
+			North America, 13(3), 431–439.
+			\vspace{-3mm}
+			\bibitem{litlink25}
+			Omary RA, Frayne R, Unal O, et al. MR-guided an-gioplasty of
+			renal artery stenosis in a pig model: a fea-sibility study. J Vasc Interv Radiol
+			2000;11(3):373–81.
+			\vspace{-3mm}
+			\bibitem{litlink26}
+			Condino, S., Ferrari, V., Freschi, C., Alberti, A., Berchiolli, R., Mosca, F.,
+			Ferrari, M. (2012). Electromagnetic navigation platform for endovascular surgery:
+			how to develop sensorized catheters and guidewires. The International Journal of
+			Medical Robotics and Computer Assisted Surgery, 8(3), 300–310.
+			\vspace{-3mm}
+			\bibitem{litlink27}
+			Aurora and 3D Guidance electromagnetic (EM) tracking: [электронный ресурс]. — URL: https://www.ndigital.com/electromagnetic-tracking-technology/.
+			\vspace{-3mm}
+			\bibitem{litlink28}
+			Stoll, J., Ren, H., Dupont, P. E. (2012). Passive Markers for Tracking
+			Surgical Instruments in Real-Time 3-D Ultrasound Imaging. IEEE Transactions on
+			Medical Imaging, 31(3), 563–575.
+			\vspace{-3mm}
+			\bibitem{litlink29}
+			Silvestry FE, Kerber RE, Brook MM, Carroll JD, Eberman KM,
+			Goldstein SA, Herrmann HC, Homma S, Mehran R, Packer DL, Parisi
+			AF, Pulerwitz T, Seward JB, Tsang TS, Wood MA. Echocardiography-guided
+			interventions. J Am Soc Echocardiogr. 2009 Mar;22(3):213-31; quiz 316-7.
+			\vspace{-3mm}
+			\bibitem{litlink30}
+			Cannon, J. W., Stoll, J. A., Salgo, I. S., Knowles, H. B., Howe, R. D.,
+			Dupont, P. E., . . . del Nido, P. J. (2003). Real-Time Three-Dimensional Ultrasound
+			for Guiding Surgical Tasks. Computer Aided Surgery, 8(2), 82–90.
+			\vspace{-3mm}
+			\bibitem{litlink31}
+			Kliewer, M. A., Sheafor, D. H., Paulson, E. K., Helsper, R. S., Hertzberg,
+			B. S., Nelson, R. C. (1999). Percutaneous liver biopsy: a cost-benefit analysis
+			comparing sonographic and CT guidance. AJR. American journal of roentgenology,
+			173(5), 1199-1202.
+			\vspace{-3mm}
+			\bibitem{litlink32}
+			Rosenthal M, State A, Lee J, Hirota G, Ackerman J, Keller K, Pisano E,
+			Jiroutek M, Muller K, Fuchs H. Augmented reality guidance for needle biopsies:
+			A randomized, controlled trial in phantoms. In: Niessen W, Viergever M, editors:
+			Proceedings of the Fourth International Conference on Medical Image Computing
+			and Computer-Assisted Intervention (MICCAI 2001), Utrecht, The Netherlands,
+			October 2001. Ber- lin: Springer, 2001. 
+			\vspace{-3mm}
+			\bibitem{litlink33}
+			Stippel DL, Bohm S, Beckurts KT, Brochhagen HG, Holscher AH.
+			Experimental evaluation of accuracy of radiofrequency ablation using conventional
+			ultrasound or a third-dimension navigation tool. 2002.
+			\vspace{-3mm}
+			\bibitem{litlink34}
+			Dario P, Carrozza MC, Marcacci M, D’Attanasio S, Magnami B, Tonet
+			0, Megali G. A novel mechatronic tool for computer-assisted arthroscopy. IEEE
+			Trans Inf Techno1 Biomed 2000.
+			\vspace{-3mm}
+			\bibitem{litlink35}
+			Kojcev, Risto; Fuerst, Bernhard; Zettinig, Oliver; Fotouhi, Javad; Lee, Sing Chun; Frisch, Benjamin; Taylor, Russell; Sinibaldi, Edoardo; Navab, Nassir (2016). Dual-robot ultrasound-guided needle placement: closing the planning-imaging-action loop. 
+			\vspace{-3mm}
+			\bibitem{litlink36}
+			J.Huang,J.K.Triedman,N.V.Vasilyev,Y.Suematsu,R.O.Cleve-land, and P.
+			E. Dupont, “Imaging artifacts of medical instruments in ultrasound-guided
+			interventions,”Ultrasound Med., vol. 26, no. 10, pp.1303–1322, 2007.
+			\vspace{-3mm}
+			\bibitem{litlink37}
+			C.Merdesand P.Wolf,“Locating a catheter transducer in a three-
+			dimensional ultrasound imaging field,”IEEE Trans. Biomed. Eng., vol.48, no. 12,
+			pp. 1444–1452, Dec. 2001.
+			\vspace{-3mm}
+			\bibitem{litlink38}
+			Novotny, P. M., Stoll, J. A., Vasilyev, N. V., del Nido, P. J., Dupont, P.
+			E., Zickler, T. E., Howe, R. D. (2007). GPU based real-time instrument tracking
+			with three-dimensional ultrasound. Medical Image Analysis, 11(5), 458–464.
+			\vspace{-3mm}
+			\bibitem{litlink39}
+			Krupa, A., Folio, D., Novales, C., Vieyres, P., Li, T. (2016). Robotized
+			Tele-Echography: An Assisting Visibility Tool to Support Expert Diagnostic. IEEE
+			Systems Journal, 10(3), 974–983.
+			\vspace{-3mm}
+			\bibitem{litlink40}
+			Bojan Jerbić, Marko Švaco, Darko Chudy, Bojan Šekoranja, Filip Šuligoj, Josip Vidaković, Domagoj Dlaka, Nikola Vitez, Ivan Župančić, Luka Drobilo, Marija Turković, Adrian Žgaljić, Marin Kajtazi, Ivan Stiperski. RONNA G4—Robotic Neuronavigation: A Novel Robotic Navigation Device for Stereotactic Neurosurgery, 2020.
+			\vspace{-3mm}
+			\bibitem{litlink41}
+			Chatelain, Pierre; Krupa, Alexandre; Navab, Nassir (2015). [IEEE 2015 IEEE International Conference on Robotics and Automation (ICRA) - Seattle, WA, USA.
+			\vspace{-3mm}
+			\bibitem{litlink42}
+			Gao, Y.; Liu, X.; Zhang, X.; Zhou, Z.; Jiang, W.; Chen, L.; Liu, Z.; Wu, D.; Dong, W. A Dual-Armed Robotic Puncture System: Design, Implementation and Preliminary Tests. Electronics 2022, 11, 740.
+			\vspace{-3mm}
+			\bibitem{litlink43}
+			Yuri Vassilevski, Katerina A. Beklemysheva, Nicholas Kulberg. Numerical
+			modelling of medical ultrasound: Phantom-based verification, 2017.
+			\vspace{-3mm}
+			\bibitem{litlink44}
+			Browne, J., Ramnarine, K., Watson, A., Hoskins, P. (2003). Assessment
+			of the acoustic properties of common tissue-mimicking test phantoms. Ultrasound in
+			Medicine Biology, 29(7), 1053–1060.
+			\vspace{-3mm}
+			\bibitem{litlink45}
+			R. Piazza, et al., "Materials characterization for elastosonographic
+			phanthoms"in Computer Assisted Radiology and Surgery, Pisa, 2012.
+			\vspace{-3mm}
+			\bibitem{litlink46}
+			Manickam, K., Machireddy, R. R., Seshadri, S. (2014). Characterization
+			of biomechanical properties of agar based tissue mimicking phantoms for ultrasound
+			stiffness imaging techniques. Journal of the Mechanical Behavior of Biomedical
+			Materials, 35, 132–143.
+			\vspace{-3mm}
+			\bibitem{litlink47}
+			Ng SY, Lin CL. Tunability of Acoustic and Mechanical Behaviors in Breast
+			Tissue Mimicking Materials, 2002.
+			\vspace{-3mm}
+			\bibitem{litlink48}
+			Brewin MP, Pike LC, Rowland DE, Birch MJ. The acoustic properties,
+			centered on 20 MHZ, of an IEC agar-based tissue-mimicking material and its
+			temperature, frequency and age dependence. Ultrasound Med Biol, 2008.
+			\vspace{-3mm}
+			\bibitem{litlink49}
+			Adams F. et al. Soft 3D-printed phantom of the human kidney with
+			collecting system //Annals of biomedical engineering. – 2017. – Т. 45. – No. 4. –
+			С. 963-972.
+			\vspace{-3mm}
+			\bibitem{litlink50}
+			Culjat MO, Goldenberg D, Tewari P, Singh RS. A review of tissue
+			substitutes for ultrasound imaging. Ultrasound Med Biol. 2010.
+			\vspace{-3mm}
+			\bibitem{litlink51}
+			Maneas, E., Xia, W., Nikitichev, D. I., Daher, B., Manimaran, M., Wong,
+			R. Y. J., . . . Desjardins, A. E. (2018). Anatomically realistic ultrasound phantoms
+			using gel wax with 3D printed moulds. Physics in Medicine Biology, 63(1).
+			\vspace{-3mm}
+			\bibitem{litlink52}
+			Chen, A. I., Balter, M. L., Chen, M. I., Gross, D., Alam, S. K., Maguire, T.
+			J., Yarmush, M. L. (2016). Multilayered tissue mimicking skin and vessel phantoms
+			with tunable mechanical, optical, and acoustic properties.
+			\vspace{-3mm}
+			\bibitem{litlink53}
+			Cafarelli, A. Verbeni, A. Poliziani, P. Dario, A. Menciassi, L. Ricotti.
+			Tuning acoustic and mechanical properties of materials for ultrasound phantoms and
+			smart substrates for cell cultures, 2017.
+			\vspace{-3mm}
+			\bibitem{litlink54}
+			Cafarelli, A., Miloro, P., Verbeni, A., Carbone, M., Menciassi, A. (2016).
+			Speed of sound in rubber-based materials for ultrasonic phantoms. Journal of
+			Ultrasound, 19(4), 251–256.
+			\vspace{-3mm}
+			\bibitem{litlink55}
+			Zell, K., Sperl, J. I., Vogel, M. W., Niessner, R., Haisch, C. (2007).
+			Acoustical properties of selected tissue phantom materials for ultrasound imaging.
+			Physics in Medicine and Biology, 52(20), N475–N484.
+			\vspace{-3mm}
+			\bibitem{litlink56}
+			Сверхмягкие силиконы для ортопедии и создания
+			спецэффектов-ХИМСНАБ-КОМПОЗИТ.
+			\vspace{-3mm}
+			\bibitem{litlink57}
+			Pacioni, A., Carbone, M., Freschi, C., Viglialoro, R., Ferrari, V., Ferrari,
+			M. (2014). Patient-specific ultrasound liver phantom: materials and fabrication
+			method. International Journal of Computer Assisted Radiology and Surgery, 10(7),
+			1065–1075.
+			\vspace{-3mm}
+			\bibitem{litlink58}
+			Ceh, D., Peters, T. M., Chen, E. C. S. (2015). Acoustic characterization of
+			polyvinyl chloride and self-healing silicone as phantom materials. Medical Imaging
+			2015: Physics of Medical Imaging.
+			\vspace{-3mm}
+			\bibitem{litlink59}
+			Ustbas, B., Kilic, D., Bozkurt, A., Aribal, M. E., Akbulut, O.
+			(2018). Silicone-based composite materials simulate breast tissue to be used as
+			ultrasonography training phantoms. Ultrasonics, 88, 9–15
+			\vspace{-3mm}
+			\bibitem{litlink60}
+			Marina Carbone, Sara Condino, Lorenza Mattei.(2012) Anthropomorphic
+			Ultrasound Elastography Phantoms – Characterization of Silicone Materials to Build
+			Breast Elastography Phantoms.
+		\end{thebibliography}
+		\input{append.tex}
+	\end{document}
