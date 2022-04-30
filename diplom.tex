@@ -85,7 +85,7 @@ times % шрифт Times как основной
 %\captionsetup{format=hang,labelsep=period}
 % Использовать полужирное начертание для векторов
 % Включать подсекции в оглавление
-\setcounter{tocdepth}{3}
+%\setcounter{tocdepth}{3}
 %\setcounter{secnumdepth}{2}
 \graphicspath{{fig/}}
 \titleformat{\section}[block]{\bfseries\normalsize}{\hspace{1.25cm}\thesection}{1ex}{}
@@ -128,17 +128,17 @@ times % шрифт Times как основной
 		\tableofcontents
 		%\input{Список терминов}
 		\input{Introduction_asp.tex}
-		\input{Chapter_0.tex}
-		\input{Chapter_1.tex}
-		\input{Chapter_2.tex}
-		\input{zakluchenie.tex}
+		%\input{Chapter_0.tex}
+		%\input{Chapter_1.tex}
+		%\input{Chapter_2.tex}
+		%\input{zakluchenie.tex}
 		\setcounter{chapter}{0}
 		\newpage
 		\renewcommand{\bibnumfmt}[1]{#1 \hfill} % нумерация источников в самом списке — через точку
 		\renewcommand{\bibsection}{\likechapter \centering{CПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}} 
 		\setlength{\bibsep}{0pt}
 		
-		\addcontentsline{toc}{chapter}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
+		%\addcontentsline{toc}{chapter}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
 		\begin{thebibliography}{99}{\protect\thispagestyle{fancy}}
 			\vspace{6mm}
 			\bibitem{litlink1} 
